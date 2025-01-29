@@ -1,0 +1,125 @@
+conky.config = {
+	alignment = 'top_middle',
+	background = true,
+	border_inner_margin = 5,
+	border_outer_margin = 0,
+	border_width = 0,
+	color0 = 'dab3ff';
+	color1 = 'add8e6',
+	color2 = 'ffe595',
+	color3 = 'orange',
+	color4 = 'red',
+	color5 = '0068c8',
+	color6 = 'green',
+	color7 = 'darkgrey',
+ 	color8 = '1e90ff',--dodgerblue
+	color9 = 'yellow';
+	cpu_avg_samples = 2,
+	default_color = 'white',
+--default_graph_size 15 40
+	default_outline_color = '#000000',
+	default_shade_color = '#000000',
+	double_buffer = true,
+	draw_borders = false,
+	draw_graph_borders = false,
+	draw_outline = false,-- amplifies text if yes
+	draw_shades = false,
+	extra_newline = false,
+	font = 'URW Gothic L:size=8',
+--font = 'Roboto:size=10',
+	gap_x = 10,-- l|r
+	gap_y = 10,-- u|d
+	imlib_cache_size = 0,
+	maximum_width = 400,
+	minimum_size = 350,
+	minimum_height = 400,
+	minimum_width = 400,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	override_utf8_locale = true,
+	own_window = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	own_window_class = 'Conky',
+--own_window_class = 'Conky-semi',
+--own_window_colour = '#000000',
+	own_window_hints = 'undecorated,below,skip_taskbar,skip_pager',
+--own_window_title = '4_Moon Teo Style',
+	own_window_transparent = false,
+--own_window_type = 'desktop',     --normal, desktop, dock, panel or override
+	own_window_type = 'normal',
+	pad_percents = 2,
+	short_units = true,
+	show_graph_range = true,
+	show_graph_scale = true,
+	stippled_borders = 5,
+--total_run_times 0,
+	update_interval = 600,
+	uppercase = false,-- set to yes if you want all text to be in uppercase
+	use_spacer = 'none',
+	use_xft = true,
+	xftalpha = 1.0,
+	
+}
+
+conky.text = [[
+#                                        show city, country, lat and long (and background image as optional)
+${image $HOME/.conky/weather/Openweathermap/python_logo.png -p 145,0 -s 15x15}${color2}${font = 'URW Gothic L:size=8'}OPENWEATHERMAP    ${font}${color1}${execpi 900 sed -n '25p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}, ${execpi 900 sed -n '20p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}  (lat ${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt} - long ${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt})${color white}${font}  ${color2}${hr 1}${color}
+#${image $HOME/.conky/weather/Openweathermap/backgroundowm.png -p 0,0 -s 1500x600}
+#                                             load script Python (settare execi per max 6 chiamate/ora) (vedere openweathermap)
+${color4}${execpi 600 python ~/.conky/weather/Openweathermap/today/todayowmdata.py}${color}${execpi 600 python ~/.conky/weather/Openweathermap/forecast/forecastowmdata.py}${color4}${color}${execpi 600 python ~/.conky/weather/Openweathermap/today/todayowmuvindex.py}${execpi 600 python ~/.conky/weather/Openweathermap/forecast/forecastowmuvindex.py}${color4}
+#                                   show info for today (by words) plus icon
+${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayicon.txt}
+${color4}${goto 190}${execpi 900 sed -n '4p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}${color} - ${execpi 900 sed -n '5p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}
+#                                   show info for today (by words) plus icon (seconda descrizione del meteo, potrebbe non essere presente)
+${color4}${goto 190}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/today2ndweather.txt}${color}${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/today/today2ndweather.txt}${execpi 900 sed -n '3p' $HOME/.conky/weather/Openweathermap/today/today2ndweather.txt}
+#${goto 250}${voffset 25}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayicon.txt}
+#                                    set the compass
+#${image $HOME/.conky/weather/compass/windsrose.png -p 300,50 -s 100x100}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/todaycompass.txt}#${image $HOME/.conky/weather/compass/arrow2.png -p 300,50 -s 100x100}${image $HOME/.conky/weather/compass/cpointsfixed.png -p 300,50 -s 100x100}
+
+#                                   show temp and real temp for today
+${color}${goto 190}Temp: ${execpi 900 sed -n '7p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}${color}°C
+${goto 190}(Feel: ${execpi 900 sed -n '8p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}°C)${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayiconhot.txt}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayiconcold.txt}
+${goto 190}${color1}${execpi 900 sed -n '9p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}°${color}/${color4}${execpi 900 sed -n '10p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}°C
+${color}${goto 190}Wind speed: ${execpi 900 sed -n '14p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt} Km/h
+
+#		                    info for today
+${color2}HUMIDITY: $color${execpi 900 sed -n '12p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}%${goto 272}${color2}PRESSURE: $color${execpi 900 sed -n '11p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}hpa 
+${color2}UV INDEX (${color6}0${color2}-${color0}11+${color2}): ${eval $${color${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/today/todayowmuvindex.txt}}}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayowmuvindex.txt}${goto 272}${color2}CLOUD COVER: $color${execpi 900 sed -n '16p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}% 
+${color2}DEW POINT: ${eval $${color${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/today/todayowmdewpoint.txt}}}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todayowmdewpoint.txt}${color}°C${color2}${goto 272}VISIBILITY: $color${execpi 900 sed -n '13p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}m
+${color2}SUN R/S: $color${execpi 900 sed -n '21p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}/${execpi 900 sed -n '22p' $HOME/.conky/weather/Openweathermap/today/todaydata.txt}${color2}${alignr}SUN DURAT.: $color${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/sunduration.txt}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#		icons weather for the next 9 hours (with time and min/max temp)
+${color}${goto 40}h${execpi 900 sed -n '38p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 176}h${execpi 900 sed -n '57p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 309}h${execpi 900 sed -n '76p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}
+${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/forecast/forecasticons.txt}
+${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/forecast/forecasticons.txt}
+${execpi 900 sed -n '3p' $HOME/.conky/weather/Openweathermap/forecast/forecasticons.txt}
+
+
+${font URW Gothic L:size=7}${goto 37}${color1}${execpi 900 sed -n '23p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${color}/${color4}${execpi 900 sed -n '24p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 170}${color1}${execpi 900 sed -n '42p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${color}/${color4}${execpi 900 sed -n '43p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 303}${color1}${execpi 900 sed -n '61p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${color}/${color4}${execpi 900 sed -n '62p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${font}
+${color}${hr 1}
+#		icons weather for the next 3 (or 5) days TESTING (sarebbero list 7-15-23 perchè inizia da zero)
+${goto 26}${execpi 900 sed -n '171p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c1-10}  h${execpi 900 sed -n '171p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 159}${execpi 900 sed -n '323p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c1-10}  h${execpi 900 sed -n '323p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 294}${execpi 900 sed -n '475p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c1-10}  h${execpi 900 sed -n '475p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}
+
+${font URW Gothic L:size=7}${goto 105}${color4}${execpi 900 sed -n '157p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 238}${color4}${execpi 900 sed -n '309p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 371}${color4}${execpi 900 sed -n '461p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C
+${goto 105}${color1}${execpi 900 sed -n '156p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 238}${color1}${execpi 900 sed -n '308p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 371}${color1}${execpi 900 sed -n '460p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C
+${goto 105}${color}H:${execpi 900 sed -n '161p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}%${goto 238}H:${execpi 900 sed -n '313p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}%${goto 371}H:${execpi 900 sed -n '465p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}%
+${goto 105}${color}P:${execpi 900 sed -n '158p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}${goto 238}P:${execpi 900 sed -n '310p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}${goto 371}P:${execpi 900 sed -n '462p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}
+${goto 100}UV:${eval $${color${execpi 900 sed -n '3p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}}}${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}${color}${goto 233}UV:${eval $${color${execpi 900 sed -n '6p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}}}${execpi 900 sed -n '5p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}${color}${goto 366}UV:${eval $${color${execpi 900 sed -n '9p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}}}${execpi 900 sed -n '8p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}${color}${font}
+${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/forecast/forecasticonsnextdays.txt}${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/forecast/forecasticonsnextdays.txt}${execpi 900 sed -n '3p' $HOME/.conky/weather/Openweathermap/forecast/forecasticonsnextdays.txt}${color}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#		icons weather for the next 2 days TESTING (sarebbero list 31-39 perchè inizia da zero)
+${goto 26}${execpi 900 sed -n '627p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c1-10}  h${execpi 900 sed -n '627p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 159}${execpi 900 sed -n '760p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c1-10}  h${execpi 900 sed -n '760p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt|cut -c12-16}${goto 280}${font URW Gothic L:size=5}${alignc}${color3}Forecast UVINDEX calculated at noon${font}${color}
+
+${font URW Gothic L:size=7}${goto 105}${color4}${execpi 900 sed -n '613p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 238}${color4}${execpi 900 sed -n '746p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C
+${goto 105}${color1}${execpi 900 sed -n '612p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C${goto 238}${color1}${execpi 900 sed -n '745p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}°C
+${goto 105}${color}H:${execpi 900 sed -n '617p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}%${goto 238}H:${execpi 900 sed -n '750p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}%
+${goto 105}${color}P:${execpi 900 sed -n '614p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}${goto 238}P:${execpi 900 sed -n '747p' $HOME/.conky/weather/Openweathermap/forecast/forecastdata.txt}
+${goto 100}UV:${eval $${color${execpi 900 sed -n '12p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}}}${execpi 900 sed -n '11p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}${color}${goto 233}UV:${eval $${color${execpi 900 sed -n '15p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}}}${execpi 900 sed -n '14p' $HOME/.conky/weather/Openweathermap/forecast/forecastowmuvindex.txt}${color}
+${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/forecast/forecasticonsnextdays2.txt}${execpi 900 sed -n '2p' $HOME/.conky/weather/Openweathermap/forecast/forecasticonsnextdays2.txt}${execpi 3600 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/owmicon.txt}${color}${font}
+${color2}${hr 1}
+#                                    set the compass
+${image $HOME/.conky/weather/compass/windsrose.png -p 300,45 -s 100x100}${execpi 900 sed -n '1p' $HOME/.conky/weather/Openweathermap/today/todaycompass.txt}
+]];
