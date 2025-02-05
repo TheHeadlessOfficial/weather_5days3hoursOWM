@@ -11,7 +11,7 @@ lock_file = "/tmp/script_5days3hours.lock"
 # Crea il file di lock all'inizio
 try:
     open(lock_file, 'w').close()
-    ################################ my API url forecast (insert it between apostrophe, DON'T delete apostrophes)
+    ################################ my APPID forecast (insert it between apostrophe, DON'T delete apostrophes)
     # set latitude and longitude
     mylat = 45.40713
     mylon = 11.87680
@@ -56,7 +56,7 @@ try:
     hpop = []
     hpod = []
     hdttext = []
-    ################################ set the tyemp paths
+    ################################ set the temp paths
     home = '/home/'
     conky = '/.conky/'
     ################################ set the paths for the ERROR
