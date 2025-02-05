@@ -74,9 +74,6 @@ try:
     pathowmlogo = home + homename + conky + 'weather/Openweathermap/5DAYS3HOURS/owmicon.txt'
     ################################ set the paths for the HOURLY section
     pathhours = home + homename + conky + 'weather/Openweathermap/5DAYS3HOURS/nexthours.txt'
-    ################################ compass angle
-    myd = 72   # <--- insert angle of your North in 'myd'
-    tdeg = 0
     ################################ get data for ERROR section FORECAST
     try:
         coderrforecast = str(dataforecast['cod'])
