@@ -1,6 +1,6 @@
 # Conky Weather FORECAST (5days/3hours)
  
-A standalone conky (written in Python) that shows the CURRENT weather, using [OpenWeather API](https://openweathermap.org/) website.<br>
+A standalone conky (written in Python) that shows the FORECAST (5days/3hours) weather, using [OpenWeather API](https://openweathermap.org/) website.<br>
 
 <br>
 <br>
