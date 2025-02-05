@@ -56,7 +56,7 @@ conky.config = {
 	show_graph_scale = true,
 	stippled_borders = 5,
 --total_run_times 0,
-	update_interval = 30,
+	update_interval = 900,
 	uppercase = false,-- set to yes if you want all text to be in uppercase
 	use_spacer = 'none',
 	use_xft = true,
