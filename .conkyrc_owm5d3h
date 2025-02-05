@@ -27,7 +27,7 @@ conky.config = {
 	extra_newline = false,
 	font = 'URW Gothic L:size=8',
 --font = 'Roboto:size=10',
-	gap_x = -410,-- l|r      20 is default, 3190 tre schermi
+	gap_x = 10,-- l|r      20 is default, 3190 tre schermi
 	gap_y = 10,-- u|d      10 is default
 	imlib_cache_size = 0,
 	maximum_width = 400,
