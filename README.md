@@ -16,7 +16,7 @@ In the `font` folder, you can find some fonts you need.<br>
 The python script saves data in files so you can build your conky weather as you wish.<br>
 The `.conkyrc_owm5d3h` file i attach, works.<br>
 Run the file `.conkyrc_owm5d3h` from terminal (the first time you run this conky), so you can get possible errors.<br>
-You have to create your conky statements in `.conkyrc_owm5d3h` file, inside the block where you read `WRITE YOUR CONKY STATEMENTS IN THIS BLOCK`
+You have to create your conky statements in `.conkyrc_owm5d3h` file, inside the block where you read `WRITE YOUR CONKY STATEMENTS IN THIS BLOCK`.
 
 
 
