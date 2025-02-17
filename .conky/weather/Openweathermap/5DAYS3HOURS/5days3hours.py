@@ -8,7 +8,7 @@ from geopy.geocoders import Photon
 geolocator = Photon(user_agent="measurements")
 # Lock file to tell conky that the script is running
 lock_file = "/tmp/script_5days3hours.lock"
-# Create lock file
+# Check for file lock
 try:
     open(lock_file, 'w').close()
     ################################ my APPID forecast (insert it between apostrophe, DON'T delete apostrophes)
