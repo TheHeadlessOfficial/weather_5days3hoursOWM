@@ -1,16 +1,16 @@
-import os, sys
-import requests
-import time
-import urllib.request
-# import module GEOPY
-from geopy.geocoders import Photon
-# initialize Nominatim API or Photon API
-geolocator = Photon(user_agent="measurements")
 # Lock file to tell conky that the script is running
 lock_file = "/tmp/script_5days3hours.lock"
 # Check for file lock
 try:
     open(lock_file, 'w').close()
+    import os, sys
+    import requests
+    import time
+    import urllib.request
+    # import module GEOPY
+    from geopy.geocoders import Photon
+    # initialize Nominatim API or Photon API
+    geolocator = Photon(user_agent="measurements")
     ################################ my APPID forecast (insert it between apostrophe, DON'T delete apostrophes)
     # set latitude and longitude
     mylat = 45.40713
